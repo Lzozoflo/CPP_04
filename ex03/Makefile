@@ -13,6 +13,10 @@ HEADERS_DIR			:=		./inc/
 
 # Sub Directories
 
+
+NEW_CHAR			:=		Character/
+NEW_MA				:=		Materia/
+
 # for a new DIR add a new :
 # NEW_DIR			:=		new/
 
@@ -28,11 +32,24 @@ HEADERS_DIR			:=		./inc/
 HEADERS_D			:=		./incs/
 
 
-HEADERS				:=
-
+HEADERS				:=		AMateria.hpp		\
+							Character.hpp		\
+							Cure.hpp			\
+							Ice.hpp				\
+							ICharacter.hpp		\
+							IMateriaSource.hpp	\
+							MateriaSource.hpp
 
 
 SRC					:=		main.cpp
+
+SRC_CHAR			:=		Character.cpp
+
+SRC_MA				:=		AMateria.cpp		\
+							Cure.cpp			\
+							Ice.cpp				\
+							MateriaSource.cpp
+
 
 
 # for a new SRC add a new :
@@ -45,8 +62,9 @@ SRC					:=		main.cpp
 #	$(addprefix $(NEW_DIR), $(SRC_NEW))
 
 
-SRCS				=		$(SRC)
-
+SRCS				=		$(addprefix $(NEW_MA), $(SRC_MA)) \
+							$(addprefix $(NEW_CHAR), $(SRC_CHAR))	\
+							$(SRC)
 
 #	#################################################################################	#
 #	#		#			No need To change anything below this line.			#		#	#

@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.hpp                                       :+:      :+:    :+:   */
+/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/06 12:38:15 by fcretin           #+#    #+#             */
-/*   Updated: 2025/06/04 10:14:51 by fcretin          ###   ########.fr       */
+/*   Created: 2025/06/03 16:07:05 by fcretin           #+#    #+#             */
+/*   Updated: 2025/06/04 10:05:54 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#ifndef AMATERIA_HPP
-#define AMATERIA_HPP
+#ifndef MATERIASOURCE_HPP
+#define MATERIASOURCE_HPP
 
 
 #include <iostream>
-#include "Character.hpp"
+#include "IMateriaSource.hpp"
 
 #define RESET "\033[0m"
 #define RED "\033[31m"
@@ -24,35 +24,27 @@
 #define BLUE  "\033[34m"
 #define YELLOW "\033[33m"
 
+class AMateria;
 
-class AMateria
+class MateriaSource : public IMateriaSource
 {
-		protected:
-		// {
+	private:
+	// {
+		AMateria	*_Inventory[4];
+	// }
+	public:
+	// {
 
-			std::string	_Type;
+		MateriaSource();
+		MateriaSource( MateriaSource &other);
+		MateriaSource &operator=( MateriaSource &other);
+		virtual ~MateriaSource();
 
-			AMateria( void );
-			AMateria( const AMateria &b );
-			AMateria &operator=( const AMateria &b );
-			/*------Canonical-------*/
+		virtual void learnMateria(AMateria*);
+		virtual AMateria* createMateria(std::string const & type);
+		/*----func----*/
 
-		// }
-		public:
-		// {
-
-			virtual ~AMateria( void );
-			AMateria(std::string const & type);
-			/*----constructor----destructor----*/
-
-
-			std::string const & getType() const;//Returns the materia type
-
-			virtual AMateria* clone() const = 0;
-			virtual void use(ICharacter& target) const;
-			/*----func----*/
-
-		// }
+	// }
 };
 
 

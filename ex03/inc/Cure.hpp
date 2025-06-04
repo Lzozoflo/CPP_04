@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.hpp                                       :+:      :+:    :+:   */
+/*   Cure.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/06 12:38:15 by fcretin           #+#    #+#             */
-/*   Updated: 2025/06/04 10:14:51 by fcretin          ###   ########.fr       */
+/*   Created: 2025/06/01 15:28:42 by fcretin           #+#    #+#             */
+/*   Updated: 2025/06/04 09:48:58 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#ifndef AMATERIA_HPP
-#define AMATERIA_HPP
+#ifndef CURE_HPP
+#define CURE_HPP
 
-
+#include "AMateria.hpp"
 #include <iostream>
-#include "Character.hpp"
 
 #define RESET "\033[0m"
 #define RED "\033[31m"
@@ -25,30 +24,28 @@
 #define YELLOW "\033[33m"
 
 
-class AMateria
+class Cure : public AMateria
 {
-		protected:
+		private:
 		// {
 
-			std::string	_Type;
-
-			AMateria( void );
-			AMateria( const AMateria &b );
-			AMateria &operator=( const AMateria &b );
+			Cure( const Cure &b );
+			Cure &operator=( const Cure &b );
+			~Cure( void );
 			/*------Canonical-------*/
 
 		// }
 		public:
 		// {
 
-			virtual ~AMateria( void );
-			AMateria(std::string const & type);
+			Cure( void );
+			Cure(std::string const & type);
 			/*----constructor----destructor----*/
 
 
 			std::string const & getType() const;//Returns the materia type
 
-			virtual AMateria* clone() const = 0;
+			virtual AMateria* clone() const;
 			virtual void use(ICharacter& target) const;
 			/*----func----*/
 
@@ -57,5 +54,3 @@ class AMateria
 
 
 #endif
-// ICE ice("ice")
-// ICE ice2 = ice;

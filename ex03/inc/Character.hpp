@@ -1,61 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.hpp                                       :+:      :+:    :+:   */
+/*   Character.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 12:38:15 by fcretin           #+#    #+#             */
-/*   Updated: 2025/06/04 10:14:51 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/06/04 13:14:40 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#ifndef AMATERIA_HPP
-#define AMATERIA_HPP
+#ifndef CHARACTER_HPP
+#define CHARACTER_HPP
 
 
 #include <iostream>
-#include "Character.hpp"
+#include "ICharacter.hpp"
+// #include "AMateria.hpp"
 
 #define RESET "\033[0m"
 #define RED "\033[31m"
 #define GREEN  "\033[32m"
 #define BLUE  "\033[34m"
 #define YELLOW "\033[33m"
+// class ICharacter;
 
-
-class AMateria
+class Character : public ICharacter
 {
-		protected:
-		// {
+	private:
+	// {
 
-			std::string	_Type;
+		std::string	_Name;
+		AMateria	*_Inventory[4];
 
-			AMateria( void );
-			AMateria( const AMateria &b );
-			AMateria &operator=( const AMateria &b );
-			/*------Canonical-------*/
+		Character( void );
 
-		// }
+
 		public:
 		// {
 
-			virtual ~AMateria( void );
-			AMateria(std::string const & type);
-			/*----constructor----destructor----*/
+		Character( const Character &other );
+		Character &operator=( const Character &other );
+		virtual ~Character();
+		/*------Canonical-------*/
 
+		// Character	&operator=( const ICharacter *other );
+		Character( const std::string &name );
+		/*------Constructor-------*/
 
-			std::string const & getType() const;//Returns the materia type
+		virtual std::string const & getName() const;
+		virtual void equip(AMateria* m);
+		virtual void unequip(int idx);
+		virtual void use(int idx, ICharacter& target);
+		/*------func-------*/
 
-			virtual AMateria* clone() const = 0;
-			virtual void use(ICharacter& target) const;
-			/*----func----*/
-
-		// }
+	// }
 };
 
-
 #endif
-// ICE ice("ice")
-// ICE ice2 = ice;
