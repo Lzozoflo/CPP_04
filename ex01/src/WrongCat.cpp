@@ -58,7 +58,7 @@ WrongCat::~WrongCat( void )
 /*---func---*/
 
 
-void	WrongCat::makeSound( void ) const
-{
-	std::cout << "Meow" << std::endl;
-}
+// void	WrongCat::makeSound( void ) const
+// {
+// 	std::cout << "Meow" << std::endl;
+// }

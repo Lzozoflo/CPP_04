@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 11:06:45 by fcretin           #+#    #+#             */
-/*   Updated: 2025/06/01 12:02:15 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/06/09 09:01:31 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "Dog.hpp"
 #include "WrongCat.hpp"
 
+#define NB_ANIMAL 15
 
 int main()
 {
@@ -21,22 +22,26 @@ int main()
 		Animal a;
 		a.makeSound();
 	}
-	std::cout << "------------------------------------------------" << std::endl;
+
+	std::cout << "\n------------------------\n" << std::endl;
+
 	{
 		const Animal* meta = new Animal();
 		const Animal* j = new Dog();
 		const Animal* i = new Cat();
 		std::cout << j->getType() << " const Animal* j = new Dog();" << std::endl;
 		std::cout << i->getType() << " const Animal* i = new Cat();" << std::endl;
+		j->makeSound(); //will output the dog sound!
 		i->makeSound(); //will output the cat sound!
-		j->makeSound();//will output the dog sound!
 		meta->makeSound();
 
 		delete i;
 		delete j;
 		delete meta;
 	}
-	std::cout << "------------------------------------------------" << std::endl;
+
+	std::cout << "\n------------------------\n" << std::endl;
+
 	{
 		const WrongAnimal* meta = new WrongAnimal();
 		const WrongAnimal* i = new WrongCat();
@@ -47,10 +52,24 @@ int main()
 		delete i;
 		delete meta;
 	}
-	std::cout << "------------------------------------------------" << std::endl;
+
+	std::cout << "\n------------------------\n" << std::endl;
+
 	{
-		Animal* tab[10];
-		for (int i = 0; i <= 9; i++){
+
+		const WrongCat* Wc = new WrongCat();
+		const WrongAnimal* Wa = Wc;
+		Wc->makeSound();
+		Wa->makeSound();
+
+		delete Wa;
+	}
+
+	std::cout << "\n------------------------\n" << std::endl;
+
+	{
+		Animal* tab[NB_ANIMAL];
+		for (int i = 0; i < NB_ANIMAL; i++){
 
 			if (i < 5)
 				tab[i] = new Dog();
@@ -58,7 +77,7 @@ int main()
 				tab[i] = new Cat();
 		}
 
-		for (int i = 0; i <= 9; i++)
+		for (int i = 0; i < NB_ANIMAL; i++)
 			delete tab[i];
 	}
 
