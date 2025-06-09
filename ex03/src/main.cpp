@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/25 11:06:45 by fcretin           #+#    #+#             */
-/*   Updated: 2025/06/04 13:22:29 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/06/09 09:33:32 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,43 @@
 
 int main()
 {
+
+	AMateria* tmp;
+	ICharacter* me = new Character("me");
 	IMateriaSource* src = new MateriaSource();
+
+
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
 
-	ICharacter* me = new Character("me");
 
-	AMateria* tmp;
+	//add
 	tmp = src->createMateria("ice");
 	me->equip(tmp);
+
+	//deleted
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
-
 	me->unequip(1);
 	delete tmp;
 
+
+	//add
 	tmp = src->createMateria("ice");
 	me->equip(tmp);
+	//add
 	tmp = src->createMateria("ice");
 	me->equip(tmp);
-	tmp = src->createMateria("cure");
-	// tmp = src->createMateria("ice");
+
+
+
+
+	tmp = src->createMateria("ice");
+	// tmp = src->createMateria("cure");
 	me->equip(tmp);
-	me->unequip(3);
-	delete tmp;
+	// me->unequip(3);
+	// delete tmp;
+
 
 	ICharacter* bob = new Character("mich");
 	me->use(0, *bob);

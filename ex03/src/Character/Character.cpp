@@ -6,7 +6,7 @@
 /*   By: fcretin <fcretin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 14:45:24 by fcretin           #+#    #+#             */
-/*   Updated: 2025/06/04 13:14:38 by fcretin          ###   ########.fr       */
+/*   Updated: 2025/06/05 14:21:54 by fcretin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,10 @@ void Character::equip(AMateria* m)
 {
 
 	for (size_t i = 0; i < 4; i++){
+		if (this->_Inventory[i] == m){
+			std::cout << "This materia is already registered" << std::endl;
+			return ;
+		}
 		if (this->_Inventory[i] == NULL){
 			this->_Inventory[i] = m;
 			return ;
